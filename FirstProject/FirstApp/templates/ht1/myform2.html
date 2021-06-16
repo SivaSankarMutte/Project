@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<title>Registration Form</title>
+</head>
+<body>
+	<fieldset>
+		<div class="jumbotron">
+			<legend><h1>Registration Form</h1></legend>
+			<form action="{% url 'myform2' %}" method="post" class="was-validated">
+			{% csrf_token %}
+				<div class="form-group">
+					<label for="fname">Enter First Name</label>
+					<input type="text" class="form-control" name="fname" id="fname">
+				</div>
+				<div class="form-group">
+					<label for="lname">Enter Last Name</label>
+					<input type="text" class="form-control" name="lname" id="lname">
+				</div>
+				
+				<div class="form-group">
+					<label for="email">Enter Email</label>
+					<input type="text" class="form-control" name="email" id="email">
+				</div>
+				<div class="form-group">		
+					<label for="phoneno">Enter Phone Number</label>
+					<input type="text" class="form-control" name="phoneno" id="phoneno">
+				</div>
+				<div class="form-group">		
+							<label>Gender</label><br>
+							<input type="radio" class="form-control-radio" name="gender" value="Male">Male &nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="gender" class="form-control-radio" value="Female">Female
+				</div>
+				<div class="form-group">		
+							<label>Enter Full Address</label>
+							<td><textarea name="address" class="form-control" rows="5" cols="50"></textarea></td>
+				</div>
+				<div class="form-group">
+					<label>Select Languages known</label><br>
+								English&nbsp;<input type="checkbox" id="english" name="checks[]" value="English" class="form-control-check"><br>
+								Telugu&nbsp;<input type="checkbox" id="telugu" name="checks[]" value="Telugu" class="form-control-check"><br>
+								Hindi&nbsp;<input type="checkbox" id="hindi" name="checks[]" value="Hindi" class="form-control-check">
+				</div>
+				<div class="form-group">		
+							<label>Favourite Sport</label>
+								<select name="sport" class="form-control">
+									<option value="cricket">Cricket</option>
+									<option value="football">Foot Ball</option>
+									<option value="volleyball">Volley Ball</option>
+									<option value="tennis">Tennis</option>
+									<option value="kabaddi">Kabaddi</option>
+								</select>
+				</div>
+
+				<input type="submit" class="btn btn-success" value="SUBMIT">
+						
+
+				</div>
+			</form>
+		</div>
+	</fieldset>
+
+</body>
+</html>

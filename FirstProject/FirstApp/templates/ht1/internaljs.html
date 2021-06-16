@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script>
+		function fun(){
+			alert("Hi buddy");
+		}
+	</script>
+	<script src="{% static 'js/myscript.js' %}" type="text/javascript"></script>
+</head>
+<body>
+	<p id="demo">This para changes now</p>
+	<h1>Click here to see how the internal js works</h1>
+	<input type="button" value="Click me!" onclick="fun()">
+	<h1>Click below to see how the external js works</h1>
+	<input type="button" value="Click here!" onclick="display()"><br>
+
+	<!-- Getting sum of two numbers -->
+	<input type="text" placeholder="Enter n1 value" name="n1">
+	<input type="text" placeholder="Enter n2 value" name="n2">
+
+	<input type="button" value="SUM" onclick="add(10,20)">
+	<h1 id="getsum"> </h1>
+</body>
+</html>

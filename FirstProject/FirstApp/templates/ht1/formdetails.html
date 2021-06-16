@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Form Details</title>
+	<style>
+		h1{
+			background-color: lime;
+			color: darkblue;
+			text-align: center;
+		}
+		th{
+			background-color: cyan;
+			text-align: center;
+		}
+
+		td{
+			background-color: red;
+			text-align: center;
+		}
+	</style>
+</head>
+<body background="{% static 'images/green.jpg' %}">
+	<h1>Details are:<br>Hi {{name}}</h1>
+	
+	<table border="1">
+		<tr>
+			<thead>
+				<th>USER NAME</th>
+				<th>REGD NO</th>
+				<th>EMAIL</th>
+			</thead>
+		</tr>
+		<tr>
+			<tbody>
+				<td>{{name}}</td>
+				<td>{{regdno}}</td>
+				<td>{{email}}</td>
+			</tbody>
+		</tr>
+	</table>
+
+</body>
+</html>

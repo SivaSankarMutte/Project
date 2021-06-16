@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registration Form</title>
+	<style>
+		input{
+			background-color: lightblue;
+		}
+		input:hover{
+			background-color: orange;
+		}
+		input:focus{
+			background-color: lightgreen;
+		}
+		button{
+			background-color: red;
+			font-size: 35px;
+			margin-left: 48%;
+		}
+		button:hover{
+			background-color: cyan;
+		}
+	</style>
+</head>
+<body>
+	<form action="{% url 'myform' %}" method="post">
+		{% csrf_token %}
+		<label>Enter Name:</label><br>
+		<input type="text" name="name" placeholder="Enter your name here:"><br><br>
+		<label>Enter Regd No:</label><br>
+		<input type="text" name="regdno" placeholder="Enter regdno:"><br><br>
+		<label>Enter Email:</label><br>
+		<input type="text" name="email" placeholder="Enter Email:"><br><br>
+		<input type="submit" value="SUBMIT" name="submit">
+	</form>
+
+</body>
+</html>
