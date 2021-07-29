@@ -1,0 +1,120 @@
+{% load static %}
+<nav class="navbar navbar-expand bg-dark navbar-dark" id="navbar">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'images/Wynklogo-white.svg' %}" alt="logo" style="width:150px;">
+  </a>
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'home' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600"  href="{% url 'reg' %}">REGISTRATION</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#!" style="font-weight: 600">PREMIUM</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#!" style="font-weight: 600">DOWNLOAD</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#!" style="font-weight: 600">SUPPORT</a>
+      </li>
+      {% elif user.is_superuser %}
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'home' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'gvpm' %}">Permissions</a>
+      </li>
+      {% elif user.role == 2 %}
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'home' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'addmovie' %}" style="font-weight: 600">ADD MOVIE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'add' %}" style="font-weight: 600">ADD SONG</a>
+      </li>
+      {% elif user.role == 3 %}
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'home' %}">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'favourites' %}">FAVORITES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'recent' %}">RECENT</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'fd' %}">FEEDBACK</a>
+      </li>
+      <li class="nav-item">
+        <div class="table table-borderless" height="10px">
+          <tr>
+            <form method="post" action="{% url 'srch' %}">
+              {% csrf_token %}
+                <td>
+                  <input type="text" name="srch" placeholder="Search Song Name..." class="rounded">
+                </td>
+                <td>
+                  <input type="submit" value="search" class="btn-success">
+                </td>
+            </form>
+          </tr>
+        </div>
+      </li>
+
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'home' %}">HOME</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link text-light" style="font-weight: 600" href="{% url 'rlrq' %}">Role Request</a>
+      </li>
+      {% endif %}
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto">
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link mr-2" href="{% url 'login' %}">Login</a>
+      </li>
+      {% else %}
+      <div class="dropdown">
+        <li class="btn dropdown-toggle" data-toggle="dropdown">
+          <!--
+          Hi welcome {% if user.role == 3 %}
+          <span>User</span>
+          {% elif user.role == 2 %}
+          <span>Manager</span>
+          {% else %}
+          <span>Guest</span>
+          {% endif %}
+          -->
+          <img src="{{user.uimg.url}}" class="rounded-circle" height="25px" width="25px">
+          <span class="text-light">{{request.user.username}}</span>
+        </li>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'pf' %}">Profile</a>
+          <a class="dropdown-item" href="{% url 'chpd' %}">Change Password</a>
+          <a class="dropdown-item" href="{% url 'lgo' %}">LogOut</a>
+        </div>
+      </div>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+

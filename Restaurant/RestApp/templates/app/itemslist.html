@@ -1,0 +1,89 @@
+{% extends 'app/base.html' %}
+{% block title %} Restaurant List {% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+	{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible" id="dismiss">
+		<div>{{m}}</div>
+	  <a href="#" class="close" data-dismiss="alert" id="x" aria-label="close">&times;</a>
+	</div>
+	{% endfor %}
+	{% endif %}
+
+	<div class="row">
+		<div class="card col-md-4 shadow-lg mx-2 h-100">
+			<div class="card-body">
+				<h3 class="text-center text-light bg-secondary p-2 border-rounded">Add Item</h3>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+
+					{% for n in r %}
+					{% if forloop.counter == 1 %}
+					<select class="form-control my-2" name="rsid">
+						{% for j in er %}
+						<option value="{{j.id}}">{{j}}</option>
+						{% endfor %}
+					</select>
+					{% elif forloop.counter >= 2 %}
+					<div>{{n}}</div>
+					{% endif %}
+					{% endfor %}
+					
+					<div class="row">
+						<div class="col">
+							<input type="reset" name="Reset" class="btn btn-outline-info my-2 form-control">
+						</div>
+						<div class="col">
+							<input type="submit" value="Add" class="btn btn-outline-success my-2 form-control">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="card col-md shadow-lg mx-2">
+			<div class="card-body">
+				<h3 class="text-center text-light bg-secondary p-2 border-rounded">List of items</h3>
+				<table class="table table-borderless table-hover">
+					<tr class="bg-dark text-light">
+						<th>S No</th>
+						<th>Item Name</th>
+						<th>Item type</th>
+						<th>Item Price</th>
+						<th>Item Availability</th>
+						<th>Operations</th>
+					</tr>
+					{% for v in s %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td><a href="{% url 'itemview' v.5 %}">{{v.0}}</a></td>
+						<td>
+							{% if v.1 == 'veg' %}
+							<span class="badge badge-success">Veg</span>
+							{% else %}
+							<span class="badge badge-danger">Non Veg</span>
+							{% endif %}
+						</td>
+						<td>{{v.2}}</td>
+						<td>
+							{% if v.4 == 'yes' %}
+							<span class="badge badge-success">Yes</span>
+							{% else %}
+							<span class="badge badge-danger">No</span>
+							{% endif %}
+						</td>
+						<td><a href="{% url 'updateitem' v.5 %}" class="btn btn-outline-warning mx-2">Update</a>
+							<a href="{% url 'deleteitem' v.5 %}" class="btn btn-outline-danger mx-2">Remove</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% block title %}Item Update{% endblock %}
+{% block content %}
+<div class="container mt-4">
+	<div class="card col-md-6 mx-auto shadow-lg">
+		<h3>Item Update</h3>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table class="table table-borderless table-hover">
+						<tr>
+							<th>Enter Item Name:</th>
+							<td>
+								{{q.itemname}}
+							</td>
+						</tr>
+						<tr>
+							<th>Enter Item Price:</th>
+							<td>
+								{{q.itemprice}}
+							</td>
+						</tr>
+						<tr>
+							<th>Select Item Type:</th>
+							<td>{{q.itemtype}}</td>
+						</tr>
+						<tr>
+							<th>Upload Item Image:</th>
+							<td>{{q.itemimg}}</td>
+						</tr>
+						<tr>
+							<th>Item availability:</th>
+							<td>{{q.availability}}</td>
+						</tr>
+					</table>
+			<div class="row">
+				<div class="col">
+					<a href="{% url 'items' %}" class="btn btn-outline-primary form-control my-2">Back to List</a>
+				</div>
+				<div class="col">
+					<input type="submit" value="Update" class="btn btn-outline-success form-control my-2">
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+{% endblock %}

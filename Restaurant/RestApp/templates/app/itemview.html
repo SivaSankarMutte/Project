@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Item View{% endblock %}
+{% block content %}
+<div id="flip" class="text-center btn-dark p-1 border border-dark">
+	<span class="badge badge-info text-center">
+		<h4>&nbsp;&nbsp;Items List Toggler&nbsp;&nbsp;</h4>
+	</span>
+</div>
+<div id="panel" class="text-center btn-danger border border-dark">
+	<table class="table table-borderless table-hover bg-danger text-light">
+		<tr class="bg-dark text-light">
+			<th>Item Name</th>
+			<th>Item Type</th>
+			<th>Item Price</th>
+			<th>Item Availability</th>
+			<th>Item Image</th>
+		</tr>
+		<tr>
+			<th>{{x.itemname}}</th>
+			<td>{{x.itemtype}}</td>
+			<td>{{x.itemprice}}</td>
+			<td>{{x.availability}}</td>
+			<td>
+				<img src="/images/{{x.itemimg}}" class="img rounded thumbnail" height="40px">
+			</td>
+		</tr>
+	</table>
+
+	<div>
+			<a href="{% url 'items' %}" class="btn btn-success">Back to List</a>
+	</div>
+</div>
+{% endblock %}

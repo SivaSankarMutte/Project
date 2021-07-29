@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Restaurant View{% endblock %}
+{% block content %}
+<div class="container mt-4">
+	<div class="card col-md-8 mx-auto shadow-lg">
+		<div class="card-body">
+			<div class="bg-dark text-light">
+				<h2 class="text-center">Restaurant View</h2>
+			</div>
+			<div class="row">
+				<div class="col-sm h-50">
+					<img src="{{z.rsimg.url}}" class="img rounded" height="180px" width="100%">
+				</div>
+				<div class="col">
+					<table class="table table-borderless table-hover">
+						<tr>
+							<th>Restaurant Name</th>
+							<td>{{z.rname}}</td>
+						</tr>
+						<tr>
+							<th>Items Available</th>
+							<td>{{z.nitems}}</td>
+						</tr>
+						<tr>
+							<th>Timings</th>
+							<td>{{z.timings}}</td>
+						</tr>
+						<tr>
+							<th>Address</th>
+							<td>{{z.address}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<hr/>
+			<div id="flip" class="text-center btn-dark p-1 border border-dark">
+				<span class="badge badge-info text-center">
+					<h4>&nbsp;&nbsp;Items List Toggler&nbsp;&nbsp;</h4>
+				</span>
+			</div>
+			<div id="panel" class="text-center btn-danger border border-dark">
+				<table class="table table-borderless table-hover bg-danger text-light">
+					<tr class="bg-dark text-light">
+						<th>Item Name</th>
+						<th>Item Type</th>
+						<th>Item Price</th>
+						<th>Item Availability</th>
+						<th>Item Image</th>
+					</tr>
+					{% for x in i %}
+					<tr>
+						<th>{{x.itemname}}</th>
+						<td>{{x.itemtype}}</td>
+						<td>{{x.itemprice}}</td>
+						<td>{{x.availability}}</td>
+						<td>
+							<img src="/images/{{x.itemimg}}" class="img rounded thumbnail" height="40px">
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+		<div>
+			<a href="{% url 'rlist' %}" class="btn btn-outline-success">Back to List</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
